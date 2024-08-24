@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing Layout</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
+    <style>
+        body {
+            background-image: url('images/Nature BnW.jpg');
+			background-size: cover; /* Untuk memastikan gambar mengisi seluruh area */
+			background-repeat: no-repeat; /* Agar gambar tidak diulang */
+            padding: 20px;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+        }
+        .left-container {
+            background-color: #0e0e0e;
+            max-width: 600px;
+            margin-right: 20px;            
+        }
+		
+        .right-container {
+            padding-left: 3px;
+            width: 300px;
+			border-left: 1px solid #9e871d; /* Left border in yellow */
+			border-top: none;   /* No top border */
+			border-right: none; /* No right border */
+			border-bottom: none; /* No bottom border */
+        }
+		.vertical-text {
+            writing-mode: vertical-rl;
+            transform: rotate(180deg); /* Untuk menulis dari bawah ke atas */
+            text-align: center;
+            border: 1px solid black;
+            padding: 10px;
+        }
+		.header0 {
+            padding: 10px;
+			border: 3px double #1b1b1b;
+			background-color: #bc951d;
+			color: #232018;
+            font-weight: bold;
+            text-align: center;
+			font-family: arial;
+			margin-bottom: 10px;
+        }
+        .header {
+            padding: 10px;
+			color: #A7943F;
+            font-weight: bold;
+            text-align: center;
+			font-family: arial;
+        }
+		.skrinsut {
+			background-color: #3498db; /* Blue background */
+			width: 100%;
+			border: none; /* Remove default border */
+			color: white; /* White text */
+			padding: 15px 30px; /* Padding for size */
+			text-decoration: none; /* Remove underline */
+			display: inline-block; /* Inline-block for proper spacing */
+			font-size: 16px; /* Font size */
+			font-family: 'Arial', sans-serif; /* Font style */
+			border-radius: 15px; /* Rounded corners */
+			transition: all 0.3s ease; /* Smooth transition for hover effects */
+			cursor: pointer; /* Pointer cursor on hover */
+			box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+		}
+		.skrinsut:hover {
+			background-color: #2980b9; /* Darker blue on hover */
+			box-shadow: 0 15px 20px rgba(0, 0, 0, 0.3); /* Deeper shadow on hover */
+			transform: translateY(-3px); /* Slight lift effect on hover */
+}
+		hr {
+			width:60%;
+			height: 1px; /* Atur tinggi garis */
+            border: none; /* Hapus border bawaan */
+            background-image: linear-gradient(to right, transparent, #A7943F, transparent); /* Gradient horizontal */
+        }
+		.total-price {
+			background-color: #68B453;
+            padding: 10px;
+			color: #1b1b1b; 
+            font-weight: bold;
+			font-size: 20px;
+            text-align: center;
+        }
+        .section, .variations, .additions {
+            margin-bottom: 20px;
+        }
+        .row {
+            display: flex;
+			color: #CDCDCD;
+            margin-bottom: 10px;
+            
+        }
+        .row label {
+            flex: 0 0 50%; /* 50% width */
+			text-align: right;
+			padding: 5px;
+            font-weight: bold;
+			font-family: arial;
+			font-size: 13px;
+        }
+        .row select {
+			padding: 3px;
+            border: 2px solid gray;
+            border-radius: 5px;
+            background-color: #1b1b1b;
+			color: white;
+            font-size: 14px;
+			transition: background-color 1s;
+            background-repeat: no-repeat;
+            background-position: right 10px center;	
+            flex: 0 0 30%; /* 30% width */
+		}
+		.row select:hover {
+			background-color: #D2D2D2; /* Warna latar belakang saat di-hover */
+			color:black;
+		}
+        .row input[type="text"] {
+            flex: 0.5;
+            padding: 5px;
+            text-align: right;
+        }
+		.price {
+            flex: 0 0 20%; /* 20% width */
+            text-align: left;
+            padding: 5px 10px;
+        }
+        .price.default {
+            color: #505050;
+        }
+        .price.non-default {
+            color: #51A853;
+			font-weight: bold;
+        }
+		.blank {
+			flex: 0 0 20%; /* 20% width */
+			align: left;
+            padding: 5px 10px;
+            border-radius: 5px;
+		
+    </style>
+</head>
+<body>
+ <!-- INI PEMBUNGKUS DIV PAGE CALCULATOR -->
+<div class="container">
+    <div  id="content" class="left-container"> <!-- ID=content itu buat SS -->
+        <div class="header0">LUCISVY's COMMS PRICE CALCULATOR</div>
+        <div class="section">
+            <div class="row">
+                <label for="charCount">HOW MANY CHARACTER:</label>
+				<select id="charCount">
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="73">73, WTF! &#x1F480;</option>
+				</select>
+				<div class="blank"></div>
+            </div>
+            <div class="row">
+                <label for="style">CHOOSE THE STYLE:</label>
+				<select id="style">
+				<option value="Anime">ANIME</option>
+				<option value="Semirealistic">SEMIREALISTIC</option>
+				</select>
+				<div class="blank"></div>
+            </div>
+            <div class="row">
+                <label for="charProportion">COMPOSITION TYPES:</label>
+				<select id="charProportion">
+				<option value="Head-only">Head-only</option>
+				<option value="Bust-up">Bust-up</option>
+				<option value="Half-body">Half-body</option>
+				<option value="Full-body">Full-body</option>
+				</select>
+				<div id="charBasePrice" class="price">$0.00</div>
+            </div>
+            <div class="row">
+                <label for="backgroundType">BACKGROUND TYPES:</label>
+				<select id="backgroundType">
+				<option value="No/Flat Color">No/Flat Color</option>
+				<option value="Simple">Simple</option>
+				<option value="Medium">Medium</option>
+				<option value="Complex">Complex</option>
+				</select>
+				<div id="backgroundPrice" class="price">$0.00</div>
+            </div>
+            <div class="row">
+                <label for="canvasType">CANVAS TYPES:</label>
+				<select id="canvasType">
+				<option value="Square">Square</option>
+				<option value="Portrait">Portrait</option>
+				<option value="Landscape">Landscape</option>
+				</select>
+				<div id="canvasPrice" class="price">$0.00</div>
+            </div>
+            <div class="row">
+                <label for="nsfw">IS IT NSFW?:</label>
+				<select id="nsfw">
+				<option value="No">No</option>
+				<option value="Yes">Yes</option>
+				</select>
+				<div id="nsfwPrice" class="price">$0.00</div>
+            </div>
+        </div>
+
+        <div class="variations">
+            <div class="header">VARIATIONS or ADDITIONS for NSFW<hr></div>
+
+            <div class="row">
+                <label for="fullOutfitVariation">WITH+WITHOUT OUTFIT VARIATION:</label>
+				<select id="fullOutfitVariation">
+				<option value="No">No</option>
+				<option value="Yes">Yes</option>
+				</select>
+				<div id="fullOutfitPrice" class="price">$0.00</div>
+            </div>
+            <div class="row">
+                <label for="pantiesBraVariation">PANTIES/BRA Variation:</label>
+				<select id="pantiesBraVariation">
+				<option value="No">No</option>
+				<option value="Yes">Yes</option>
+				</select>
+				<div id="pantiesBraPrice" class="price">$0.00</div>
+            </div>
+            <div class="row">
+                <label for="tentacle">TENTACLE:</label>
+				<select id="tentacle">
+				<option value="No">No</option>
+				<option value="Yes">Yes</option>
+				</select>
+				<div id="tentaclePrice" class="price">$0.00</div>
+            </div>
+            <div class="row">
+                <label for="cameoChar">CAMEO CHAR (E.g. male body w/ genitals):</label>
+				<select id="cameoChar">
+				<option value="0">No</option>
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				</select>
+				<div id="cameoCharPrice" class="price">$0.00</div>
+            </div>
+            <div class="row">
+                <label for="expressionVariation">EXPRESSION VARIATIONS:</label>
+				<select id="expressionVariation">
+				<option value="0">No</option>
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				</select>
+				<div id="expressionVariationPrice" class="price">$0.00</div>
+            </div>
+            <div class="row">
+                <label for="extraComicPanel">COMIC PANEL:</label>
+				<select id="extraComicPanel">
+				<option value="0">No</option>
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				</select>
+				<div id="extraComicPanelPrice" class="price">$0.00</div>
+            </div>
+            <div class="row">
+                <label for="bondage">BONDAGE:</label>
+				<select id="bondage">
+				<option value="No">No</option>
+				<option value="Yes">Yes</option>
+				</select>
+				<div id="bondagePrice" class="price">$0.00</div>
+            </div>
+        </div>
+
+        <div class="additions">
+            <div class="header">OTHER ADDITIONS<hr></div>
+
+            <div class="row">
+                <label for="complexDesign">COMPLEX DESIGN:</label>
+				<select id="complexDesign">
+				<option value="No">No</option>
+				<option value="Yes">Yes</option>
+				</select>
+				<div id="complexDesignPrice" class="price">$0.00</div>
+            </div>
+            <div class="row">
+                <label for="commercialUse">COMMERCIAL USE:</label>
+				<select id="commercialUse">
+				<option value="No">No</option>
+				<option value="Yes">Yes</option>
+				</select>
+				<div id="commercialPrice" class="price">$0.00</div>
+            </div>
+        </div>
+		<p class="container" style="color: #837654;">*Prices may be lower or higher than this, because not all aspects are listed here.</p>		
+        <div class="total-price">Total Price: <span id="totalPrice">$0</span></div>
+    </div>
+    <div class="right-container">
+			<div class="header0">REFERENCES</div>
+				<div>
+				<!-- Tempat untuk gambar -->
+				<img src="images/1d.png" alt="Image 1" style="width: 100%; margin-bottom: 10px;">
+				<div>
+		<hr>
+				<div>
+				<!-- Tempat untuk gambar -->
+				<img src="images/1c.png" alt="Image 1" style="width: 100%; margin-bottom: 10px;">
+		<hr>
+				<div class="header">Done calculating?</div>
+				<button class="skrinsut" onclick="takeScreenshot()">[ SAVE THE PRICE AS IMAGE ]</button> <!-- Cuma 1 line ini aja buat SS -->
+	</div>
+
+</div> <!-- INI DIV calculator -->
+ <!-- INI PEMBUNGKUS PAGE CALCUALTOR, DIBAWAH INI UDAH DIV MILIK PAGE LAIN -->
+<script>
+	// Fungsi untuk mengupdate warna berdasarkan teks
+    function updatePriceColor(priceElement) {
+        if (priceElement.innerText.trim() === '$0.00') {
+            priceElement.classList.add('default');
+            priceElement.classList.remove('non-default');
+        } else {
+            priceElement.classList.add('non-default');
+            priceElement.classList.remove('default');
+        }
+    }
+
+    // Inisialisasi observer untuk setiap elemen dengan class 'price'
+    document.querySelectorAll('.price').forEach(priceElement => {
+        // Cek warna awal berdasarkan teks
+        updatePriceColor(priceElement);
+
+        // Buat observer untuk memantau perubahan pada teks
+        const observer = new MutationObserver(() => {
+            updatePriceColor(priceElement);
+        });
+
+        // Observe perubahan teks
+        observer.observe(priceElement, { childList: true, characterData: true, subtree: true });
+    });
+	// Batas Perubahan warna pada price dari grey ke Hijau
+	// DIBAWAH INI SCREENSHOT
+	function takeScreenshot() {
+            html2canvas(document.getElementById('content')).then(function(canvas) {
+                canvas.toBlob(function(blob) {
+                    let link = document.createElement('a');
+                    link.href = URL.createObjectURL(blob);
+                    link.download = 'Lucisvy Price Details.jpg';
+                    link.click();
+                    URL.revokeObjectURL(link.href); // Clean up
+                }, 'image/jpeg');
+            });
+        }
+    function calculateTotal() {
+        const charCount = parseInt(document.getElementById('charCount').value);
+        const charProportion = document.getElementById('charProportion').value;
+        const style = document.getElementById('style').value;
+        const backgroundType = document.getElementById('backgroundType').value;
+        const canvasType = document.getElementById('canvasType').value;
+        const nsfw = document.getElementById('nsfw').value;
+        const complexDesign = document.getElementById('complexDesign').value;
+        const commercialUse = document.getElementById('commercialUse').value;
+        const fullOutfitVariation = document.getElementById('fullOutfitVariation').value;
+        const pantiesBraVariation = document.getElementById('pantiesBraVariation').value;
+        const tentacle = document.getElementById('tentacle').value;
+        const cameoChar = parseInt(document.getElementById('cameoChar').value) || 0;
+        const expressionVariation = parseInt(document.getElementById('expressionVariation').value) || 0;
+        const extraComicPanel = parseInt(document.getElementById('extraComicPanel').value) || 0;
+        const bondage = document.getElementById('bondage').value;
+
+        let basePrice = 0;
+        let backgroundPrice = 0;
+        let canvasPrice = 0;
+        let nsfwPrice = 0;
+        let complexDesignPrice = 0;
+        let commercialPrice = 0;
+        let fullOutfitPrice = 0;
+        let pantiesBraPrice = 0;
+        let tentaclePrice = 0;
+        let cameoCharPrice = 0;
+        let expressionVariationPrice = 0;
+        let extraComicPanelPrice = 0;
+        let bondagePrice = 0;
+
+        // Base Price Calculation
+        if (style === "Anime") {
+            if (charProportion === "Head-only") {
+                basePrice = 70 + (70 * 0.9 * (charCount - 1));
+            } else if (charProportion === "Bust-up") {
+                basePrice = 80 + (80 * 0.9 * (charCount - 1));
+            } else if (charProportion === "Half-body") {
+                basePrice = 90 + (90 * 0.9 * (charCount - 1));
+            } else if (charProportion === "Full-body") {
+                basePrice = 120 + (120 * 0.9 * (charCount - 1));
+            }
+        } else if (style === "Semirealistic") {
+            if (charProportion === "Head-only") {
+                basePrice = 100 + (100 * 0.9 * (charCount - 1));
+            } else if (charProportion === "Bust-up") {
+                basePrice = 140 + (140 * 0.9 * (charCount - 1));
+            } else if (charProportion === "Half-body") {
+                basePrice = 160 + (160 * 0.9 * (charCount - 1));
+            } else if (charProportion === "Full-body") {
+                basePrice = 200 + (200 * 0.9 * (charCount - 1));
+            }
+        }
+
+        // Background Price Calculation
+        if (backgroundType === "No/Flat Color") {
+            backgroundPrice = 0;
+        } else if (backgroundType === "Simple") {
+            if (charProportion === "Head-only") {
+                backgroundPrice = 0;
+            } else if (charProportion === "Bust-up") {
+                backgroundPrice = 5;
+            } else if (charProportion === "Half-body") {
+                backgroundPrice = 7;
+            } else if (charProportion === "Full-body") {
+                backgroundPrice = 10;
+            }
+        } else if (backgroundType === "Medium") {
+            if (charProportion === "Head-only") {
+                backgroundPrice = 7;
+            } else if (charProportion === "Bust-up") {
+                backgroundPrice = 10;
+            } else if (charProportion === "Half-body") {
+                backgroundPrice = 20;
+            } else if (charProportion === "Full-body") {
+                backgroundPrice = 25;
+            }
+        } else if (backgroundType === "Complex") {
+            if (charProportion === "Head-only") {
+                backgroundPrice = 15;
+            } else if (charProportion === "Bust-up") {
+                backgroundPrice = 20;
+            } else if (charProportion === "Half-body") {
+                backgroundPrice = 30;
+            } else if (charProportion === "Full-body") {
+                backgroundPrice = 40;
+            }
+        }
+
+        // Canvas Price Calculation
+        if (canvasType === "Square" || canvasType === "Portrait") {
+            canvasPrice = 0;
+        } else if (canvasType === "Landscape") {
+            if (backgroundType === "No/Flat Color") {
+                canvasPrice = 0;
+            } else if (backgroundType === "Simple") {
+                canvasPrice = 5;
+            } else if (backgroundType === "Medium") {
+                canvasPrice = 10;
+            } else if (backgroundType === "Complex") {
+                canvasPrice = 15;
+            }
+        }
+
+        // NSFW Price Calculation
+        if (nsfw === "Yes") {
+                if (charCount === 1) {
+                    if (style === "Anime") {
+                        if (charProportion === "Head-only") nsfwPrice = 7;
+                        if (charProportion === "Bust-up") nsfwPrice = 10;
+                        if (charProportion === "Half-body") nsfwPrice = 15;
+                        if (charProportion === "Full-body") nsfwPrice = 20;
+                    } else if (style === "Semirealistic") {
+                        if (charProportion === "Head-only") nsfwPrice = 12;
+                        if (charProportion === "Bust-up") nsfwPrice = 20;
+                        if (charProportion === "Half-body") nsfwPrice = 30;
+                        if (charProportion === "Full-body") nsfwPrice = 40;
+                    }
+                } else {
+                    if (style === "Anime") {
+                        if (charProportion === "Head-only") nsfwPrice = 7 + ((charCount - 1) * 5);
+                        if (charProportion === "Bust-up") nsfwPrice = 10 + ((charCount - 1) * 5);
+                        if (charProportion === "Half-body") nsfwPrice = 15 + ((charCount - 1) * 7);
+                        if (charProportion === "Full-body") nsfwPrice = 20 + ((charCount - 1) * 10);
+                    } else if (style === "Semirealistic") {
+                        if (charProportion === "Head-only") nsfwPrice = 12 + ((charCount - 1) * 7);
+                        if (charProportion === "Bust-up") nsfwPrice = 20 + ((charCount - 1) * 7);
+                        if (charProportion === "Half-body") nsfwPrice = 30 + ((charCount - 1) * 10);
+                        if (charProportion === "Full-body") nsfwPrice = 40 + ((charCount - 1) * 15);
+                    }
+                }
+            }
+
+        // Complex Design Price Calculation
+        if (complexDesign === "Yes") {
+                complexDesignPrice = basePrice * 0.15;
+        }
+
+        // Full Outfit Variation Price Calculation
+        if (fullOutfitVariation === "Yes") {
+                fullOutfitPrice = basePrice * 0.25;
+        }
+
+        // Panties/Bra Variation Price Calculation
+        if (pantiesBraVariation === "Yes") {
+			if (style === "Anime") {
+                pantiesBraPrice = charCount * 10;
+            } else if (style === "Semirealistic") {
+                pantiesBraPrice = charCount * 15;
+            }
+			
+			
+        }
+
+        // Tentacle Price Calculation
+        if (tentacle === "Yes") {
+            tentaclePrice =  basePrice * 0.20;
+        }
+
+        // Cameo Character Price Calculation
+        if (style === "Anime") {
+            cameoCharPrice = cameoChar * 7;
+        } else if (style === "Semirealistic") {
+            cameoCharPrice = cameoChar * 10;
+        }
+
+        // Expression Variation Price Calculation
+        if (style === "Anime") {
+            expressionVariationPrice = expressionVariation * 5 * charCount;
+        } else if (style === "Semirealistic") {
+            expressionVariationPrice = expressionVariation * 7 * charCount;
+        }
+
+        // Extra Comic Panel Price Calculation
+        if (style === "Anime") {
+            extraComicPanelPrice = extraComicPanel * 25;
+        } else if (style === "Semirealistic") {
+            extraComicPanelPrice = extraComicPanel * 40;
+        }
+
+        // Bondage Price Calculation
+        if (bondage === "Yes") {
+    if (style === "Anime") {
+        if (charCount === 1) {
+            bondagePrice = charCount * 13;
+        } else {
+            bondagePrice = 13 + ((charCount - 1) * 5);
+        }
+    } else if (style === "Semirealistic") {
+        if (charCount === 1) {
+            bondagePrice = charCount * 20;
+        } else {
+            bondagePrice = 20 + ((charCount - 1) * 8);
+        }
+    }
+}
+         // Commercial Price Calculation
+        if (commercialUse === "Yes") {
+           commercialPrice = (basePrice + backgroundPrice + canvasPrice + nsfwPrice + complexDesignPrice + fullOutfitPrice + pantiesBraPrice + tentaclePrice + cameoCharPrice + expressionVariationPrice + extraComicPanelPrice + bondagePrice) * 0.5;
+        }
+        // Hitung Total Harga
+        const totalPrice = basePrice + backgroundPrice + canvasPrice + nsfwPrice + complexDesignPrice + commercialPrice + fullOutfitPrice + pantiesBraPrice + tentaclePrice + cameoCharPrice + expressionVariationPrice + extraComicPanelPrice + bondagePrice;
+
+        // Update nilai ke tampilan
+        document.getElementById('charBasePrice').innerText = `$${basePrice.toFixed(2)}`;
+        document.getElementById('backgroundPrice').innerText = `$${backgroundPrice.toFixed(2)}`;
+        document.getElementById('canvasPrice').innerText = `$${canvasPrice.toFixed(2)}`;
+        document.getElementById('nsfwPrice').innerText = `$${nsfwPrice.toFixed(2)}`;
+        document.getElementById('complexDesignPrice').innerText = `$${complexDesignPrice.toFixed(2)}`;
+        document.getElementById('commercialPrice').innerText = `$${commercialPrice.toFixed(2)}`;
+        document.getElementById('fullOutfitPrice').innerText = `$${fullOutfitPrice.toFixed(2)}`;
+        document.getElementById('pantiesBraPrice').innerText = `$${pantiesBraPrice.toFixed(2)}`;
+        document.getElementById('tentaclePrice').innerText = `$${tentaclePrice.toFixed(2)}`;
+        document.getElementById('cameoCharPrice').innerText = `$${cameoCharPrice.toFixed(2)}`;
+        document.getElementById('expressionVariationPrice').innerText = `$${expressionVariationPrice.toFixed(2)}`;
+        document.getElementById('extraComicPanelPrice').innerText = `$${extraComicPanelPrice.toFixed(2)}`;
+        document.getElementById('bondagePrice').innerText = `$${bondagePrice.toFixed(2)}`;
+        document.getElementById('totalPrice').innerText = `$${totalPrice.toFixed(2)}`;
+    }
+
+    // Tambahkan event listener ke setiap dropdown buat kalkulasi harga saat berubah
+    document.querySelectorAll('select').forEach(select => {
+        select.addEventListener('change', calculateTotal);
+    });
+
+    // Inisialisasi kalkulasi harga pertama kali
+    calculateTotal();
+</script>
+
+</body>
+</html>
