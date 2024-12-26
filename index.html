@@ -444,11 +444,11 @@
             if (charProportion === "Head-only") {
                 backgroundPrice = 15;
             } else if (charProportion === "Bust-up") {
-                backgroundPrice = 20;
-            } else if (charProportion === "Half-body") {
                 backgroundPrice = 30;
-            } else if (charProportion === "Full-body") {
+            } else if (charProportion === "Half-body") {
                 backgroundPrice = 40;
+            } else if (charProportion === "Full-body") {
+                backgroundPrice = 60;
             }
         }
 
@@ -498,7 +498,7 @@
 
         // Complex Design Price Calculation
         if (complexDesign === "Yes") {
-                complexDesignPrice = basePrice * 0.15;
+                complexDesignPrice = basePrice * 0.25;
         }
 
         // Full Outfit Variation Price Calculation
