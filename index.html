@@ -206,6 +206,7 @@
                 <label for="nsfw">IS IT NSFW?:</label>
 				<select id="nsfw">
 				<option value="No">No</option>
+				<option value="Bikini">No, But Bikini</option>
 				<option value="Yes">Yes</option>
 				</select>
 				<div id="nsfwPrice" class="price">$0.00</div>
@@ -495,7 +496,33 @@
                     }
                 }
             }
-
+	if (nsfw === "Bikini") {
+                if (charCount === 1) {
+                    if (style === "Anime") {
+                        if (charProportion === "Head-only") nsfwPrice = 0;
+                        if (charProportion === "Bust-up") nsfwPrice = 5;
+                        if (charProportion === "Half-body") nsfwPrice = 8;
+                        if (charProportion === "Full-body") nsfwPrice = 12;
+                    } else if (style === "Semirealistic") {
+                        if (charProportion === "Head-only") nsfwPrice = 0;
+                        if (charProportion === "Bust-up") nsfwPrice = 13;
+                        if (charProportion === "Half-body") nsfwPrice = 18;
+                        if (charProportion === "Full-body") nsfwPrice = 25;
+                    }
+                } else {
+                    if (style === "Anime") {
+                        if (charProportion === "Head-only") nsfwPrice = 0 + ((charCount - 1) * 0);
+                        if (charProportion === "Bust-up") nsfwPrice = 5 + ((charCount - 1) * 5);
+                        if (charProportion === "Half-body") nsfwPrice = 8 + ((charCount - 1) * 7);
+                        if (charProportion === "Full-body") nsfwPrice = 12 + ((charCount - 1) * 10);
+                    } else if (style === "Semirealistic") {
+                        if (charProportion === "Head-only") nsfwPrice = 0 + ((charCount - 1) * 0);
+                        if (charProportion === "Bust-up") nsfwPrice = 13 + ((charCount - 1) * 13);
+                        if (charProportion === "Half-body") nsfwPrice = 18 + ((charCount - 1) * 14);
+                        if (charProportion === "Full-body") nsfwPrice = 25 + ((charCount - 1) * 15);
+                    }
+                }
+            }
         // Complex Design Price Calculation
         if (complexDesign === "Yes") {
                 complexDesignPrice = basePrice * 0.25;
