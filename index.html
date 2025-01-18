@@ -305,6 +305,14 @@
 				</select>
 				<div id="commercialPrice" class="price">$0.00</div>
             </div>
+			<div class="row">
+                <label for="privateComms">POST PRIVACY:</label>
+				<select id="privateComms">
+				<option value="No">No</option>
+				<option value="Yes">Yes</option>
+				</select>
+				<div id="privatePrice" class="price">$0.00</div>
+            </div>
         </div>
 		<p class="container" style="color: #837654;">*Prices may be lower or higher than this, because not all aspects are listed here.</p>		
         <div class="total-price">Total Price: <span id="totalPrice">$0</span></div>
@@ -373,6 +381,7 @@
         const nsfw = document.getElementById('nsfw').value;
         const complexDesign = document.getElementById('complexDesign').value;
         const commercialUse = document.getElementById('commercialUse').value;
+		const privateComms = document.getElementById('privateComms').value;
         const fullOutfitVariation = document.getElementById('fullOutfitVariation').value;
         const pantiesBraVariation = document.getElementById('pantiesBraVariation').value;
         const tentacle = document.getElementById('tentacle').value;
@@ -387,6 +396,7 @@
         let nsfwPrice = 0;
         let complexDesignPrice = 0;
         let commercialPrice = 0;
+		let privatePrice = 0;
         let fullOutfitPrice = 0;
         let pantiesBraPrice = 0;
         let tentaclePrice = 0;
@@ -590,6 +600,10 @@
         if (commercialUse === "Yes") {
            commercialPrice = (basePrice + backgroundPrice + canvasPrice + nsfwPrice + complexDesignPrice + fullOutfitPrice + pantiesBraPrice + tentaclePrice + cameoCharPrice + expressionVariationPrice + extraComicPanelPrice + bondagePrice) * 0.5;
         }
+		// Private Comms Calculation
+        if (privateComms === "Yes") {
+           privatePrice = (basePrice + backgroundPrice + canvasPrice + nsfwPrice + complexDesignPrice + fullOutfitPrice + pantiesBraPrice + tentaclePrice + cameoCharPrice + expressionVariationPrice + extraComicPanelPrice + bondagePrice) * 0.2;
+        }
         // Hitung Total Harga
         const totalPrice = basePrice + backgroundPrice + canvasPrice + nsfwPrice + complexDesignPrice + commercialPrice + fullOutfitPrice + pantiesBraPrice + tentaclePrice + cameoCharPrice + expressionVariationPrice + extraComicPanelPrice + bondagePrice;
 
@@ -600,6 +614,7 @@
         document.getElementById('nsfwPrice').innerText = `$${nsfwPrice.toFixed(2)}`;
         document.getElementById('complexDesignPrice').innerText = `$${complexDesignPrice.toFixed(2)}`;
         document.getElementById('commercialPrice').innerText = `$${commercialPrice.toFixed(2)}`;
+		document.getElementById('privatePrice').innerText = `$${privatePrice.toFixed(2)}`;
         document.getElementById('fullOutfitPrice').innerText = `$${fullOutfitPrice.toFixed(2)}`;
         document.getElementById('pantiesBraPrice').innerText = `$${pantiesBraPrice.toFixed(2)}`;
         document.getElementById('tentaclePrice').innerText = `$${tentaclePrice.toFixed(2)}`;
