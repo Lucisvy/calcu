@@ -306,7 +306,7 @@
 				<div id="commercialPrice" class="price">$0.00</div>
             </div>
 			<div class="row">
-                <label for="privateComms">POST PRIVACY:</label>
+                <label for="privateComms">POST PRIVACY (I won't post it to my sos-media):</label>
 				<select id="privateComms">
 				<option value="No">No</option>
 				<option value="Yes">Yes</option>
@@ -605,7 +605,7 @@
            privatePrice = (basePrice + backgroundPrice + canvasPrice + nsfwPrice + complexDesignPrice + fullOutfitPrice + pantiesBraPrice + tentaclePrice + cameoCharPrice + expressionVariationPrice + extraComicPanelPrice + bondagePrice) * 0.2;
         }
         // Hitung Total Harga
-        const totalPrice = basePrice + backgroundPrice + canvasPrice + nsfwPrice + complexDesignPrice + commercialPrice + fullOutfitPrice + pantiesBraPrice + tentaclePrice + cameoCharPrice + expressionVariationPrice + extraComicPanelPrice + bondagePrice;
+        const totalPrice = basePrice + backgroundPrice + canvasPrice + nsfwPrice + complexDesignPrice + privatePrice + commercialPrice + fullOutfitPrice + pantiesBraPrice + tentaclePrice + cameoCharPrice + expressionVariationPrice + extraComicPanelPrice + bondagePrice;
 
         // Update nilai ke tampilan
         document.getElementById('charBasePrice').innerText = `$${basePrice.toFixed(2)}`;
