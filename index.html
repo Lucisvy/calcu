@@ -169,7 +169,7 @@
                 <label for="style">CHOOSE THE STYLE:</label>
 				<select id="style">
 				<option value="Anime">ANIME</option>
-				<option value="Semirealistic">SEMIREALISTIC</option>
+				<option value="Semirealistic">SEMIREAL(closed)</option>
 				</select>
 				<div class="blank"></div>
             </div>
@@ -410,11 +410,11 @@
             if (charProportion === "Head-only") {
                 basePrice = 80 + (80 * 0.9 * (charCount - 1));
             } else if (charProportion === "Bust-up") {
-                basePrice = 100 + (100 * 0.9 * (charCount - 1));
-            } else if (charProportion === "Half-body") {
                 basePrice = 110 + (110 * 0.9 * (charCount - 1));
+            } else if (charProportion === "Half-body") {
+                basePrice = 120 + (120 * 0.9 * (charCount - 1));
             } else if (charProportion === "Full-body") {
-                basePrice = 140 + (140 * 0.9 * (charCount - 1));
+                basePrice = 150 + (150 * 0.9 * (charCount - 1));
             }
         } else if (style === "Semirealistic") {
             if (charProportion === "Head-only") {
